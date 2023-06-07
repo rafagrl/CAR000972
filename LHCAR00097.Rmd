@@ -1,0 +1,185 @@
+---
+title: "CAR00097 - Ensaio Clínico Randomizado"
+author: 
+ - name: " Prof. Dr. Lucas Helal"
+   affiliation: "PPG Cardiologia, PPG Epidemiologia (UFRGS)"
+ - name: " Prof. Dra. Leila B. Moreira"
+   affiliation: "PPG Cardiologia (UFRGS)"   
+date: "06-06-23"
+output: 
+ html_document:
+   spacing: double
+   identation: TRUE
+   span style: 
+      font family: "Helvetica"
+      font size: 8pt
+institute: "Universidade Federal do Rio Grande do Sul"
+---
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+library(yamlme)
+library(here)
+library(tidyverse)
+```
+
+```{css echo=FALSE, message=FALSE, warning=FALSE }
+p {
+  margin: 1.5;
+  text-indent: 3ch;
+}
+
+p {
+  margin-bottom: 1 
+}
+
+font {
+  font-family: OpenSans
+}
+
+<style>
+    .lighter {
+      font-weight: lighter;
+    }
+
+    .normal {
+      font-weight: normal;
+    }
+
+    .bold {
+      font-weight: bold;
+    }
+
+    .bolder {
+      font-weight: bolder;
+    }
+</style>
+
+p.pilcrow {
+  text-indent: 0;
+  display: inline;
+}
+p.pilcrow + p.pilcrow::before {
+  content: " ¶ ";
+}
+```
+
+<h2>Causalidade e Inferência Causal</h2>
+<center>
+   <h3>Causa vs. Causalidade?</h3>
+</center>
+<center>
+   <font size="3">
+      <b>Uma pergunta mais fácil!</b>
+   </font>
+</center>
+<center>
+   <h4>
+      <b>O que é inferência causal?</b>
+   </h4>
+</center>
+<p align="justify">
+   <font size="3=2.5">
+      <br> O termo "inferência causal" passou a denotar certas maneiras especiais de abordar os aspectos causais da análise estatística.\footnote{Aalen, O. O., R{\o}ysland, K., Gran, J. M. Causality, mediation and time: a dynamic viewpoint. \emph{Journal of the Royal Statistical Society, Series A}, 175:831-861, 2012.}
+   </font>
+</p>
+<header>
+   <font size="3=2.5">
+      <font size="2.5">
+         <font size="4">_Um comentário_</font>
+         <br>
+         <br>
+      </font>
+   </font>
+</header>
+<p align="justify"></p>
+<h5>
+   <font size="3=2.5">
+      <font size="2.5">No entanto, a teoria estatística tem sido relativamente **silenciosa** em questões de causalidade. Muitos livros didáticos, especialmente os mais antigos, evitam qualquer menção ao termo, **exceto** em configurações de experimentos aleatórios. Alguns mencionam principalmente para enfatizar que a **correlação** ou **associação não é o mesmo que causação**, e alguns até advertem seus leitores para evitar o uso de linguagem causal na estatística. No entanto, para muitos usuários de métodos estatísticos, as declarações causais são exatamente o que elas buscam.\footnote{Imbens, G. W., Rubin, D. B. \emph{Causal Inference for Statistics, Social, and Biomedical Sciences: An Introduction}. Cambridge University Press, 2015}</font>
+   </font>
+</h5>
+<header>
+   <font size="3=2.5">
+      <font size="2.5">
+         <br>
+      </font>
+   </font>
+   <h4>
+      <font size="3=2.5">
+         <font size="2.5">_Uma terceira pergunta!_</font>
+      </font>
+   </h4>
+   <h5>
+      <font size="3=2.5">
+         <font size="2.5">_Por que estudar inferência causal?_</font>
+      </font>
+   </h5>
+</header>
+<font size="3=2.5">
+   <font size="2.5">
+      <br>
+   </font>
+</font>
+<header>
+   <h5>
+      <font size="3=2.5">
+         <font size="2.5">_Questões causais_</font>
+      </font>
+   </h5>
+</header>
+<p align="justify">
+   <font size="3=2.5">
+      <font size="2.5">
+         <font size="3">- As escolas *charter* aumentam os escores dos testes dos alunos do ensino fundamental? - Se sim, quão grandes são os ganhos em comparação com aqueles que poderiam ser realizados pela implementação de reformas educacionais alternativas? - A obtenção de um diploma universitário aumenta o salário de um indivíduo no mercado de trabalho? - Em caso afirmativo, esse efeito específico é grande em relação aos ganhos salariais que poderiam ser obtidos apenas através de treinamento no trabalho? - O uso de uma cédula de borboleta em alguns condados da Flórida na eleição presidencial de 2000 custou votos de Al Gore? - Em caso afirmativo, o número de votos errados seria suficientemente grande para alterar o resultado eleitoral?</font>
+      </font>
+   </font>
+</p>
+<header>
+   <h4>
+      <font size="3=2.5">
+         <font size="2.5">
+            <font size="3">_Por que estudar inferência causal?_</font>
+         </font>
+      </font>
+   </h4>
+</header>
+<p align="justify">
+   <font size="3=2.5">
+      <font size="2.5">
+         <font size="3">
+            <font size="3">- Em essência, esses tipos de perguntas são simples questões de causa e efeito da forma $X$ causa $Y$? - Se $X$ causa $Y$, quão grande é o efeito de $X$ em $Y$? - O tamanho desse efeito é grande em relação aos efeitos de outras causas de $Y$? - Uma implicação prática: **ação** (ou manipulação, tratamento, ou intervenção). - Saber "a causa" nos permite tomar uma ação a fim de prevenir (no caso de um efeito nocivo) ou de estimular (no caso de um efeito benéfico).</font>
+         </font>
+      </font>
+   </font>
+</p>
+<header>
+   <h4>
+      <font size="3=2.5">
+         <font size="2.5">
+            <font size="3">_Por que estudar inferência causal?_</font>
+         </font>
+      </font>
+   </h4>
+</header>
+<p align="justify">
+   <font size="3=2.5">
+      <font size="2.5">
+         <font size="3">
+            <font size="3">- Simples questões de **causa** e **efeito** são a motivação para muitas pesquisas nas **ciências sociais**, **demográficas** e da **saúde**, embora respostas definitivas para questões de causa e efeito nem sempre sejam possíveis de serem formuladas, dadas as restrições que os pesquisadores enfrentam na coleta de dados e avaliar explicações alternativas. - Mesmo assim, há motivos para **otimismo** em relação às nossas habilidades atuais e futuras para tratar efetivamente de questões de causa e efeito. - Nas últimas quatro décadas, um **modelo de causalidade** contrafactual **foi desenvolvido** e **aperfeiçoado** e, como resultado, uma estrutura unificada para o julgamento de questões causais está agora disponível.</font>
+         </font>
+      </font>
+   </font>
+</p>
+<footer>
+   <p align="justify">
+      <font size="3=2.5">
+         <font size="2.5">
+            <font size="3">
+               <font size="1.5">Adaptado de: Prof. Rodrigo Citton Padilha (PPEpi/UFRGS), da disciplina de MAT02010, para a disciplina CAR00097, ministrada pelo Prof. Lucas Helal (PPGCardio/UFRGS, PPGEpi/UFRGS) e pela Profa. Leila Beltami (PPGCardio/UFRGS)</font>
+            </font>
+         </font>
+      </font>
+   </p>
+</footer>
